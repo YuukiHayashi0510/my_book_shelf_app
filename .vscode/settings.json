@@ -5,6 +5,7 @@
         "datetime",
         "localtime",
         "riverpod",
-        "sqflite"
+        "sqflite",
+        "usecase"
     ]
 }
