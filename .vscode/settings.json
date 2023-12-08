@@ -4,6 +4,7 @@
         "datasource",
         "datetime",
         "localtime",
+        "riverpod",
         "sqflite"
     ]
 }
