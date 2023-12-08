@@ -9,4 +9,8 @@ enum Progress {
   final String value;
 
   const Progress({required this.value});
+
+  static Progress fromValue(String value) {
+    return Progress.values.firstWhere((e) => e.value == value);
+  }
 }

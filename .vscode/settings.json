@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "AUTOINCREMENT",
+        "datasource",
         "datetime",
         "localtime",
         "sqflite"
