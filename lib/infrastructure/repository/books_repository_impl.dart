@@ -18,16 +18,26 @@ class BooksRepositoryImpl implements BooksRepository {
   }
 
   @override
-  Future<Book> createBook(
-    String title,
-    String description,
-    String isbn,
-  ) async {
+  Future<Book> createBook({
+    required String title,
+    required String subtitle,
+    required List<String> authors,
+    required String description,
+    required String isbn,
+    required String publisher,
+    required String publishedDate,
+    required String thumbnail,
+  }) async {
     var entity = await database.insertBook(
       BookMapper.transformToNewEntityMap(
-        title,
-        description,
-        isbn,
+        title: title,
+        subtitle: subtitle,
+        authors: authors,
+        description: description,
+        isbn: isbn,
+        publisher: publisher,
+        publishedDate: publishedDate,
+        thumbnail: thumbnail,
       ),
     );
     return BookMapper.transformToModel(entity);

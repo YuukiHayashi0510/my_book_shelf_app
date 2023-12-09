@@ -15,6 +15,12 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Library
+
+- Riverpod
+- Barcode Scan: [mobile_scanner](https://fluttergems.dev/packages/mobile_scanner/)
+- sqflite
+
 ## Inspired By Those Repositories
 
 - https://github.com/okaryo/CleanArchitectureTodoAppTrainingWithFlutter

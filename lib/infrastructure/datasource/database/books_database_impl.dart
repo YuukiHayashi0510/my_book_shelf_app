@@ -10,9 +10,14 @@ class BooksDatabaseImpl implements BooksDatabase {
 
   static const _columnId = 'id';
   static const _columnTitle = 'title';
+  static const _columnSubtitle = 'subtitle';
+  static const _columnAuthors = 'authors';
   static const _columnDescription = 'description';
   static const _columnIsbn = 'isbn';
   static const _columnProgress = 'progress';
+  static const _columnPublisher = 'publisher';
+  static const _columnPublishedDate = 'published_date';
+  static const _columnThumbnail = 'thumbnail';
   static const _columnCreatedAt = 'created_at';
   static const _columnUpdatedAt = 'updated_at';
 
@@ -76,9 +81,14 @@ class BooksDatabaseImpl implements BooksDatabase {
           CREATE TABLE $_tableName(
             $_columnId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             $_columnTitle TEXT NOT NULL,
+            $_columnSubtitle TEXT,
+            $_columnAuthors TEXT,
             $_columnDescription TEXT,
             $_columnIsbn TEXT,
             $_columnProgress TEXT DEFAULT 'YET',
+            $_columnPublisher TEXT,
+            $_columnPublishedDate TEXT,
+            $_columnThumbnail TEXT,
             $_columnCreatedAt TEXT DEFAULT (datetime('now', 'localtime')),
             $_columnUpdatedAt TEXT DEFAULT (datetime('now', 'localtime'))
           )

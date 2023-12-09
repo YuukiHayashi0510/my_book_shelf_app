@@ -4,11 +4,16 @@ import '../entity/model/book_list.dart';
 
 abstract class BooksRepository {
   Future<BookList> getAllBooks();
-  Future<Book> createBook(
-    String title,
-    String description,
-    String isbn,
-  );
+  Future<Book> createBook({
+    required String title,
+    required String subtitle,
+    required List<String> authors,
+    required String description,
+    required String isbn,
+    required String publisher,
+    required String publishedDate,
+    required String thumbnail,
+  });
   Future<void> updateBook(Book book);
   Future<void> deleteBook(BookId id);
 }

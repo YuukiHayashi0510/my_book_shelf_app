@@ -18,9 +18,14 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Book {
   BookId get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String get subtitle => throw _privateConstructorUsedError;
+  List<String> get authors => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get isbn => throw _privateConstructorUsedError;
   Progress get progress => throw _privateConstructorUsedError;
+  String get publisher => throw _privateConstructorUsedError;
+  DateTime get publishedDate => throw _privateConstructorUsedError;
+  String get thumbnail => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
@@ -36,9 +41,14 @@ abstract class $BookCopyWith<$Res> {
   $Res call(
       {BookId id,
       String title,
+      String subtitle,
+      List<String> authors,
       String description,
       String isbn,
       Progress progress,
+      String publisher,
+      DateTime publishedDate,
+      String thumbnail,
       DateTime createdAt,
       DateTime updatedAt});
 
@@ -60,9 +70,14 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? subtitle = null,
+    Object? authors = null,
     Object? description = null,
     Object? isbn = null,
     Object? progress = null,
+    Object? publisher = null,
+    Object? publishedDate = null,
+    Object? thumbnail = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -75,6 +90,14 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      subtitle: null == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      authors: null == authors
+          ? _value.authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -87,6 +110,18 @@ class _$BookCopyWithImpl<$Res, $Val extends Book>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as Progress,
+      publisher: null == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as String,
+      publishedDate: null == publishedDate
+          ? _value.publishedDate
+          : publishedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -117,9 +152,14 @@ abstract class _$$BookImplCopyWith<$Res> implements $BookCopyWith<$Res> {
   $Res call(
       {BookId id,
       String title,
+      String subtitle,
+      List<String> authors,
       String description,
       String isbn,
       Progress progress,
+      String publisher,
+      DateTime publishedDate,
+      String thumbnail,
       DateTime createdAt,
       DateTime updatedAt});
 
@@ -139,9 +179,14 @@ class __$$BookImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
+    Object? subtitle = null,
+    Object? authors = null,
     Object? description = null,
     Object? isbn = null,
     Object? progress = null,
+    Object? publisher = null,
+    Object? publishedDate = null,
+    Object? thumbnail = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -154,6 +199,14 @@ class __$$BookImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      subtitle: null == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      authors: null == authors
+          ? _value._authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -166,6 +219,18 @@ class __$$BookImplCopyWithImpl<$Res>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as Progress,
+      publisher: null == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as String,
+      publishedDate: null == publishedDate
+          ? _value.publishedDate
+          : publishedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -184,17 +249,33 @@ class _$BookImpl extends _Book {
   const _$BookImpl(
       {required this.id,
       required this.title,
+      required this.subtitle,
+      required final List<String> authors,
       required this.description,
       required this.isbn,
       required this.progress,
+      required this.publisher,
+      required this.publishedDate,
+      required this.thumbnail,
       required this.createdAt,
       required this.updatedAt})
-      : super._();
+      : _authors = authors,
+        super._();
 
   @override
   final BookId id;
   @override
   final String title;
+  @override
+  final String subtitle;
+  final List<String> _authors;
+  @override
+  List<String> get authors {
+    if (_authors is EqualUnmodifiableListView) return _authors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_authors);
+  }
+
   @override
   final String description;
   @override
@@ -202,13 +283,19 @@ class _$BookImpl extends _Book {
   @override
   final Progress progress;
   @override
+  final String publisher;
+  @override
+  final DateTime publishedDate;
+  @override
+  final String thumbnail;
+  @override
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
 
   @override
   String toString() {
-    return 'Book(id: $id, title: $title, description: $description, isbn: $isbn, progress: $progress, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Book(id: $id, title: $title, subtitle: $subtitle, authors: $authors, description: $description, isbn: $isbn, progress: $progress, publisher: $publisher, publishedDate: $publishedDate, thumbnail: $thumbnail, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -218,11 +305,20 @@ class _$BookImpl extends _Book {
             other is _$BookImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.subtitle, subtitle) ||
+                other.subtitle == subtitle) &&
+            const DeepCollectionEquality().equals(other._authors, _authors) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.isbn, isbn) || other.isbn == isbn) &&
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
+            (identical(other.publisher, publisher) ||
+                other.publisher == publisher) &&
+            (identical(other.publishedDate, publishedDate) ||
+                other.publishedDate == publishedDate) &&
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -230,8 +326,20 @@ class _$BookImpl extends _Book {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, description, isbn,
-      progress, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      subtitle,
+      const DeepCollectionEquality().hash(_authors),
+      description,
+      isbn,
+      progress,
+      publisher,
+      publishedDate,
+      thumbnail,
+      createdAt,
+      updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -244,9 +352,14 @@ abstract class _Book extends Book {
   const factory _Book(
       {required final BookId id,
       required final String title,
+      required final String subtitle,
+      required final List<String> authors,
       required final String description,
       required final String isbn,
       required final Progress progress,
+      required final String publisher,
+      required final DateTime publishedDate,
+      required final String thumbnail,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$BookImpl;
   const _Book._() : super._();
@@ -256,11 +369,21 @@ abstract class _Book extends Book {
   @override
   String get title;
   @override
+  String get subtitle;
+  @override
+  List<String> get authors;
+  @override
   String get description;
   @override
   String get isbn;
   @override
   Progress get progress;
+  @override
+  String get publisher;
+  @override
+  DateTime get publishedDate;
+  @override
+  String get thumbnail;
   @override
   DateTime get createdAt;
   @override

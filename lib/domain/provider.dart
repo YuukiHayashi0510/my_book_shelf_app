@@ -16,5 +16,5 @@ final createBookUseCaseProvider = Provider<CreateBookUseCase>(
     (ref) => CreateBookUseCaseImpl(ref.watch(booksRepositoryProvider)));
 final updateTodoUseCaseProvider = Provider<UpdateBookUseCase>(
     (ref) => UpdateBookUseCaseImpl(ref.watch(booksRepositoryProvider)));
-final deleteTodoUseCaseProvider = Provider<DeleteBookUseCase>(
+final deleteBookUseCaseProvider = Provider<DeleteBookUseCase>(
     (ref) => DeleteBookUseCaseImpl(ref.watch(booksRepositoryProvider)));
