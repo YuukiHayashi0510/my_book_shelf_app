@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../infrastructure/provider.dart';
 import '../../helpers/toast_helper.dart';
+import 'viewmodel/index_viewmodel.dart';
 
 class AddBookFloatingActionButton extends ConsumerWidget {
   const AddBookFloatingActionButton({super.key});
@@ -11,17 +12,19 @@ class AddBookFloatingActionButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var booksApiRepository = ref.watch(googleBooksApiRepositoryProvider);
-    var booksDatabaseRepository = ref.watch(booksRepositoryProvider);
+    var viewModel = ref.watch(indexViewModelStateNotifierProvider.notifier);
 
     return FloatingActionButton(
       onPressed: () async {
-        // TODO: 状態を利用したメソッドに変更
         var result = await BarcodeScanner.scan();
         var isbn = result.rawContent;
-        if (isbn.isNotEmpty && result.type == ResultType.Barcode) {
+        if (isbn.isEmpty || result.type != ResultType.Barcode) return;
+
+        try {
           var apiBook = await booksApiRepository.fetchBookByIsbn(isbn);
           var authors = List<String>.from(apiBook['authors']);
-          await booksDatabaseRepository.createBook(
+
+          await viewModel.addBook(
             title: apiBook['title'],
             subtitle: apiBook['subtitle'],
             authors: authors,
@@ -33,7 +36,7 @@ class AddBookFloatingActionButton extends ConsumerWidget {
           );
           // ignore: use_build_context_synchronously
           InAppNotification.success(context, '読み取りに成功しました');
-        } else {
+        } catch (e) {
           // ignore: use_build_context_synchronously
           InAppNotification.error(context, '読み取りに失敗しました');
         }
