@@ -9,7 +9,7 @@ class IndexView extends StatelessWidget {
   IndexView({super.key});
 
   final _filteredBookListProvider = filteredBookListProvider;
-  final _indexViewProvider = indexViewModelStateNotifierProvider;
+  // final _indexViewProvider = indexViewModelStateNotifierProvider;
 
   @override
   Widget build(BuildContext context) {

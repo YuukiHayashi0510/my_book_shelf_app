@@ -20,5 +20,17 @@ jobs:
         run: flutter pub get
       - name: Lint
         run: flutter analyze
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.2'
+          channel: 'stable' # or: 'beta', 'dev', 'master' (or 'main')
+          cache: true
+          cache-key: flutter # optional, change this to force refresh cache
+          cache-path: ${{ runner.tool_cache }}/flutter # optional, change this to specify the cache path
       - name: Format
         run: dart format --set-exit-if-changed -o none $(find lib -name "*.dart" -not -wholename "**/*.freeezed.dart")
