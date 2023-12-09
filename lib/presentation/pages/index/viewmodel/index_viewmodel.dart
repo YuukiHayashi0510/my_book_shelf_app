@@ -10,7 +10,7 @@ import '../../../../domain/usecase/get_all_books_usecase.dart';
 import '../../../state/state.dart';
 import 'filter_kind_viewmodel.dart';
 
-final filteredBookListProvider = Provider.autoDispose((ref) {
+final filteredBookListProvider = Provider.autoDispose<State<BookList>>((ref) {
   var filterKind = ref.watch(filterKindViewModelStateNotifierProvider);
   var bookListState = ref.watch(indexViewModelStateNotifierProvider);
 
@@ -83,14 +83,25 @@ class IndexViewModel extends StateNotifier<State<BookList>> {
     }
   }
 
-  addBook(String title, List<String> authors, String description, String isbn,
-      String publishedDate) async {
+  addBook({
+    required String title,
+    required String subtitle,
+    required List<String> authors,
+    required String description,
+    required String isbn,
+    required String publisher,
+    required String publishedDate,
+    required String thumbnail,
+  }) async {
     var book = await _createBookUseCase.execute(
-      title,
-      authors,
-      description,
-      isbn,
-      publishedDate,
+      title: title,
+      subtitle: subtitle,
+      authors: authors,
+      description: description,
+      isbn: isbn,
+      publisher: publisher,
+      publishedDate: publishedDate,
+      thumbnail: thumbnail,
     );
     state = State.success(state.data!.addBook(book));
   }

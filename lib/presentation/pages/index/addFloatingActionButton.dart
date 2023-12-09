@@ -15,16 +15,21 @@ class AddBookFloatingActionButton extends ConsumerWidget {
 
     return FloatingActionButton(
       onPressed: () async {
+        // TODO: 状態を利用したメソッドに変更
         var result = await BarcodeScanner.scan();
-        if (result.rawContent.isNotEmpty && result.type == ResultType.Barcode) {
-          var apiBook =
-              await booksApiRepository.fetchBookByIsbn(result.rawContent);
+        var isbn = result.rawContent;
+        if (isbn.isNotEmpty && result.type == ResultType.Barcode) {
+          var apiBook = await booksApiRepository.fetchBookByIsbn(isbn);
+          var authors = List<String>.from(apiBook['authors']);
           await booksDatabaseRepository.createBook(
-            apiBook.title,
-            apiBook.authors,
-            apiBook.description,
-            apiBook.industryIdentifiers[0].identifier,
-            apiBook.publishedDate,
+            title: apiBook['title'],
+            subtitle: apiBook['subtitle'],
+            authors: authors,
+            description: apiBook['description'],
+            isbn: isbn,
+            publisher: apiBook['publisher'],
+            publishedDate: apiBook['publishedDate'],
+            thumbnail: apiBook['imageLinks']['thumbnail'],
           );
           // ignore: use_build_context_synchronously
           InAppNotification.success(context, '読み取りに成功しました');

@@ -10,11 +10,14 @@ class Book with _$Book {
   const factory Book({
     required BookId id,
     required String title,
+    required String subtitle,
     required List<String> authors,
     required String description,
     required String isbn,
     required Progress progress,
+    required String publisher,
     required DateTime publishedDate,
+    required String thumbnail,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _Book;
