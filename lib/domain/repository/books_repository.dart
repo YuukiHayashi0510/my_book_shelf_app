@@ -4,6 +4,7 @@ import '../entity/model/book_list.dart';
 
 abstract class BooksRepository {
   Future<BookList> getAllBooks();
+  Future<Book> getBook(BookId id);
   Future<Book> createBook({
     required String title,
     required String subtitle,

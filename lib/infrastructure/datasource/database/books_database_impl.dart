@@ -35,6 +35,14 @@ class BooksDatabaseImpl implements BooksDatabase {
   }
 
   @override
+  Future<BookEntity> getBook(int id) async {
+    var db = await database;
+    var results =
+        await db.query(_tableName, where: '$_columnId = ?', whereArgs: [id]);
+    return results.first;
+  }
+
+  @override
   Future<BookEntity> insertBook(BookEntity book) async {
     var db = await database;
     late BookEntity bookEntity;
