@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 ## Library
 
 - Riverpod
-- Barcode Scan: [mobile_scanner](https://fluttergems.dev/packages/mobile_scanner/)
+- Barcode Scan: [barcode_scan2](https://pub.dev/documentation/barcode_scan2/latest/)
 - sqflite
 
 ## Inspired By Those Repositories
