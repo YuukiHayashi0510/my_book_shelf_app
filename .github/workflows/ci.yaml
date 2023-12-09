@@ -1,0 +1,20 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable' # or: 'beta', 'dev', 'master' (or 'main')
+      - name: Install packages
+        run: flutter pub get
+      - name: Lint
+        run: flutter analyze
+      - name: Format
+        run: dart format --set-exit-if-changed -o none $(find lib -name "*.dart" -not -wholename "**/*.freeezed.dart")
