@@ -3,6 +3,7 @@
         "AUTOINCREMENT",
         "datasource",
         "datetime",
+        "fluttertoast",
         "localtime",
         "Panelization",
         "riverpod",

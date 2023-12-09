@@ -8,6 +8,7 @@ class CreateBookUseCaseImpl implements CreateBookUseCase {
   CreateBookUseCaseImpl(this._repository);
 
   @override
-  Future<Book> execute(String title, String description, String isbn) =>
-      _repository.createBook(title, description, isbn);
+  Future<Book> execute(String title, List<String> authors, String description,
+          String isbn, String publishedDate) =>
+      _repository.createBook(title, authors, description, isbn, publishedDate);
 }

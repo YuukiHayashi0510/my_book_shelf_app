@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/book/index/index_view.dart';
+import 'presentation/pages/index/index.dart';
 
 void main() {
   runApp(const MyApp());
