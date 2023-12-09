@@ -4,6 +4,7 @@
         "datasource",
         "datetime",
         "localtime",
+        "Panelization",
         "riverpod",
         "sqflite",
         "usecase"
