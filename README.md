@@ -1,6 +1,7 @@
 # book_shelf_app
 
-<img width="400" height="400" src="https://github.com/YuukiHayashi0510/my_book_shelf_app/assets/88963450/453bd217-46e0-4fe0-bd72-c88f683c7088">
+![image](https://github.com/YuukiHayashi0510/my_book_shelf_app/assets/88963450/07bcb170-7091-4251-b342-c1b178ac4443)
+
 
 
 ## Getting Started
