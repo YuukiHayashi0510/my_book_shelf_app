@@ -1,4 +1,4 @@
-import '../entity/model/book.dart';
+import '../../entity/model/book.dart';
 
 abstract class CreateBookUseCase {
   Future<Book> execute({

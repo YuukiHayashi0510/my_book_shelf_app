@@ -1,6 +1,6 @@
-import '../entity/model/book.dart';
-import '../entity/model/book_id.dart';
-import '../repository/books_repository.dart';
+import '../../entity/model/book.dart';
+import '../../entity/model/book_id.dart';
+import '../../repository/books_repository.dart';
 import 'get_book_usecase.dart';
 
 class GetBookUseCaseImpl implements GetBookUseCase {

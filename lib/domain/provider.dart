@@ -1,16 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../infrastructure/provider.dart';
-import 'usecase/create_book_usecase.dart';
-import 'usecase/create_book_usecase_impl.dart';
-import 'usecase/delete_book_usecase.dart';
-import 'usecase/delete_book_usecase_impl.dart';
-import 'usecase/get_all_books_usecase.dart';
-import 'usecase/get_all_books_usecase_impl.dart';
-import 'usecase/get_book_usecase.dart';
-import 'usecase/get_book_usecase_impl.dart';
-import 'usecase/update_book_usecase.dart';
-import 'usecase/update_book_usecase_impl.dart';
+import 'usecase/book/create_book_usecase.dart';
+import 'usecase/book/create_book_usecase_impl.dart';
+import 'usecase/book/delete_book_usecase.dart';
+import 'usecase/book/delete_book_usecase_impl.dart';
+import 'usecase/book/get_all_books_usecase.dart';
+import 'usecase/book/get_all_books_usecase_impl.dart';
+import 'usecase/book/get_book_usecase.dart';
+import 'usecase/book/get_book_usecase_impl.dart';
+import 'usecase/book/update_book_usecase.dart';
+import 'usecase/book/update_book_usecase_impl.dart';
 
 final getAllBooksUseCaseProvider = Provider<GetAllBooksUseCase>(
     (ref) => GetAllBooksUseCaseImpl(ref.watch(booksRepositoryProvider)));
