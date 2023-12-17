@@ -18,6 +18,12 @@ class BooksRepositoryImpl implements BooksRepository {
   }
 
   @override
+  Future<Book> getBook(BookId id) async {
+    var entity = await database.getBook(id.value);
+    return BookMapper.transformToModel(entity);
+  }
+
+  @override
   Future<Book> createBook({
     required String title,
     required String subtitle,

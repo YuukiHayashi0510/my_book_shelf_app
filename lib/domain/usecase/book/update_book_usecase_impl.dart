@@ -1,5 +1,5 @@
-import '../entity/model/book.dart';
-import '../repository/books_repository.dart';
+import '../../entity/model/book.dart';
+import '../../repository/books_repository.dart';
 import 'update_book_usecase.dart';
 
 class UpdateBookUseCaseImpl implements UpdateBookUseCase {

@@ -4,9 +4,9 @@ import '../../../../domain/entity/model/book.dart';
 import '../../../../domain/entity/model/book_id.dart';
 import '../../../../domain/entity/model/book_list.dart';
 import '../../../../domain/provider.dart';
-import '../../../../domain/usecase/create_book_usecase.dart';
-import '../../../../domain/usecase/delete_book_usecase.dart';
-import '../../../../domain/usecase/get_all_books_usecase.dart';
+import '../../../../domain/usecase/book/create_book_usecase.dart';
+import '../../../../domain/usecase/book/delete_book_usecase.dart';
+import '../../../../domain/usecase/book/get_all_books_usecase.dart';
 import '../../../state/state.dart';
 import 'filter_kind_viewmodel.dart';
 

@@ -1,5 +1,5 @@
-import '../entity/model/book_id.dart';
-import '../repository/books_repository.dart';
+import '../../entity/model/book_id.dart';
+import '../../repository/books_repository.dart';
 import 'delete_book_usecase.dart';
 
 class DeleteBookUseCaseImpl implements DeleteBookUseCase {
