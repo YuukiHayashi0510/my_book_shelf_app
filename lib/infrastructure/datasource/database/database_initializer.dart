@@ -1,6 +1,8 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../../constants.dart';
+
 class DatabaseInitializer {
   static const _databaseName = 'book_shelf';
   static const _databaseVersion = 1;
@@ -10,7 +12,7 @@ class DatabaseInitializer {
   Future<void> Function(Database db, int version) onCreate;
 
   DatabaseInitializer({required this.onCreate}) {
-    _initDatabase();
+    isDbReset ? _resetDatabase() : _initDatabase();
   }
 
   Future<Database> get database async {
@@ -24,5 +26,15 @@ class DatabaseInitializer {
       onCreate: onCreate,
       version: _databaseVersion,
     );
+  }
+
+  Future<void> _resetDatabase() async {
+    // ignore: avoid_print
+    print('Resetting database...');
+    String path = join(await getDatabasesPath(), _databaseName);
+    await deleteDatabase(path);
+    _database = await _initDatabase();
+    // ignore: avoid_print
+    print('Reset database!');
   }
 }

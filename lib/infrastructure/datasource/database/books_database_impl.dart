@@ -91,7 +91,7 @@ class BooksDatabaseImpl implements BooksDatabase {
             $_columnPublishedDate TEXT,
             $_columnThumbnail TEXT,
             $_columnCreatedAt TEXT DEFAULT (datetime('now', 'localtime')),
-            $_columnUpdatedAt TEXT DEFAULT (datetime('now', 'localtime'))
+            $_columnUpdatedAt TEXT DEFAULT (datetime('now', 'localtime')),
             $_columnSeriesId INTEGER,
             FOREIGN KEY($_columnSeriesId) REFERENCES series($_columnId) ON DELETE SET NULL
           )
