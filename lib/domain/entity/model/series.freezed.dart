@@ -20,7 +20,7 @@ Series _$SeriesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Series {
-  String get id => throw _privateConstructorUsedError;
+  SeriesId get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -38,12 +38,14 @@ abstract class $SeriesCopyWith<$Res> {
       _$SeriesCopyWithImpl<$Res, Series>;
   @useResult
   $Res call(
-      {String id,
+      {SeriesId id,
       String title,
       String description,
       DateTime createdAt,
       DateTime updatedAt,
       List<Book> books});
+
+  $SeriesIdCopyWith<$Res> get id;
 }
 
 /// @nodoc
@@ -70,7 +72,7 @@ class _$SeriesCopyWithImpl<$Res, $Val extends Series>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as SeriesId,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -93,6 +95,14 @@ class _$SeriesCopyWithImpl<$Res, $Val extends Series>
               as List<Book>,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SeriesIdCopyWith<$Res> get id {
+    return $SeriesIdCopyWith<$Res>(_value.id, (value) {
+      return _then(_value.copyWith(id: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -103,12 +113,15 @@ abstract class _$$SeriesImplCopyWith<$Res> implements $SeriesCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
+      {SeriesId id,
       String title,
       String description,
       DateTime createdAt,
       DateTime updatedAt,
       List<Book> books});
+
+  @override
+  $SeriesIdCopyWith<$Res> get id;
 }
 
 /// @nodoc
@@ -133,7 +146,7 @@ class __$$SeriesImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as SeriesId,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -174,7 +187,7 @@ class _$SeriesImpl implements _Series {
       _$$SeriesImplFromJson(json);
 
   @override
-  final String id;
+  final SeriesId id;
   @override
   final String title;
   @override
@@ -234,7 +247,7 @@ class _$SeriesImpl implements _Series {
 
 abstract class _Series implements Series {
   const factory _Series(
-      {required final String id,
+      {required final SeriesId id,
       required final String title,
       required final String description,
       required final DateTime createdAt,
@@ -244,7 +257,7 @@ abstract class _Series implements Series {
   factory _Series.fromJson(Map<String, dynamic> json) = _$SeriesImpl.fromJson;
 
   @override
-  String get id;
+  SeriesId get id;
   @override
   String get title;
   @override

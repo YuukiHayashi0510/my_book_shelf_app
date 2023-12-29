@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'presentation/pages/index/index_view.dart';
+import 'presentation/pages/book/index/index_view.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

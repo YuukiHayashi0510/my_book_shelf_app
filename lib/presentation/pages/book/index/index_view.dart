@@ -31,9 +31,8 @@ class IndexView extends StatelessWidget {
                               itemCount: bookList.length,
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return BookCard(book: bookList[index]);
-                              },
+                              itemBuilder: (context, index) =>
+                                  BookCard(book: bookList[index]),
                             ),
                     ),
                     error: (_) => const Center(

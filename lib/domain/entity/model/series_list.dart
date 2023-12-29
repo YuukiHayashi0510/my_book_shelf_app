@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'series.dart';
+import 'series_id.dart';
 
 part 'series_list.freezed.dart';
 
@@ -25,7 +26,7 @@ class SeriesList with _$SeriesList {
             .toList());
   }
 
-  SeriesList removeSeriesById(String id) =>
+  SeriesList removeSeriesById(SeriesId id) =>
       copyWith(values: values.where((series) => series.id != id).toList());
 
   SeriesList searchByTitle(String title) => copyWith(

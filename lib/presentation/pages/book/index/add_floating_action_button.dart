@@ -2,8 +2,8 @@ import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../infrastructure/provider.dart';
-import '../../helpers/toast_helper.dart';
+import '../../../../infrastructure/provider.dart';
+import '../../../helpers/toast_helper.dart';
 import 'viewmodel/index_viewmodel.dart';
 
 class AddBookFloatingActionButton extends ConsumerWidget {
