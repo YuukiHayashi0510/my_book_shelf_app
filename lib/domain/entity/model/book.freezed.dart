@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Book _$BookFromJson(Map<String, dynamic> json) {
+  return _Book.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Book {
   BookId get id => throw _privateConstructorUsedError;
@@ -29,6 +33,7 @@ mixin _$Book {
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BookCopyWith<Book> get copyWith => throw _privateConstructorUsedError;
 }
@@ -244,7 +249,7 @@ class __$$BookImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$BookImpl extends _Book {
   const _$BookImpl(
       {required this.id,
@@ -261,6 +266,9 @@ class _$BookImpl extends _Book {
       required this.updatedAt})
       : _authors = authors,
         super._();
+
+  factory _$BookImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookImplFromJson(json);
 
   @override
   final BookId id;
@@ -325,6 +333,7 @@ class _$BookImpl extends _Book {
                 other.updatedAt == updatedAt));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -346,6 +355,13 @@ class _$BookImpl extends _Book {
   @pragma('vm:prefer-inline')
   _$$BookImplCopyWith<_$BookImpl> get copyWith =>
       __$$BookImplCopyWithImpl<_$BookImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Book extends Book {
@@ -363,6 +379,8 @@ abstract class _Book extends Book {
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$BookImpl;
   const _Book._() : super._();
+
+  factory _Book.fromJson(Map<String, dynamic> json) = _$BookImpl.fromJson;
 
   @override
   BookId get id;

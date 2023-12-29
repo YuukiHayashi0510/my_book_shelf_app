@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'book.dart';
+
 part 'series.freezed.dart';
 part 'series.g.dart';
 
@@ -11,7 +13,7 @@ class Series with _$Series {
     required String description,
     required DateTime createdAt,
     required DateTime updatedAt,
-    @Default([]) List<Map<String, dynamic>> books,
+    @Default([]) List<Book> books,
   }) = _Series;
 
   factory Series.fromJson(Map<String, dynamic> json) => _$SeriesFromJson(json);
