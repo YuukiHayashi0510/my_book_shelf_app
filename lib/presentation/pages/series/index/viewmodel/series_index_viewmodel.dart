@@ -7,22 +7,22 @@ import '../../../../../domain/usecase/series/create_series_usecase.dart';
 import '../../../../../domain/usecase/series/delete_series_usecase.dart';
 import '../../../../../domain/usecase/series/get_all_series_usecase.dart';
 import '../../../../state/state.dart';
-import 'search_viewmodel.dart';
+import 'series_search_viewmodel.dart';
+import 'sort_viewmodel.dart';
 
-final searchedSeriesListProvider =
-    Provider.autoDispose<State<SeriesList>>((ref) {
-  var search = ref.watch(searchedViewModelStateNotifierProvider);
-  var seriesListState = ref.watch(indexViewModelStateNotifierProvider);
+// UIではソート済みの方を渡す
+final sortedSeriesListProvider = Provider.autoDispose<State<SeriesList>>((ref) {
+  var sort = ref.watch(sortViewModelStateNotifierProvider);
+  var seriesListState = ref.watch(searchedSeriesListProvider);
 
   return seriesListState.when(
     init: () => const State.init(),
     success: (seriesList) {
-      switch (search.searchColumn) {
-        case SearchColumn.title:
-          return State.success(seriesList.searchByTitle(search.value));
-        case SearchColumn.description:
-          // TODO: 説明文での検索
-          return State.success(seriesList.searchByTitle(search.value));
+      switch (sort.sortColumn) {
+        case SortColumn.createdAt:
+          return State.success(seriesList.sortByCreatedAt(sort.order));
+        case SortColumn.updatedAt:
+          return State.success(seriesList.sortByUpdatedAt(sort.order));
       }
     },
     loading: () => const State.loading(),
@@ -30,7 +30,29 @@ final searchedSeriesListProvider =
   );
 });
 
-final indexViewModelStateNotifierProvider =
+final searchedSeriesListProvider =
+    Provider.autoDispose<State<SeriesList>>((ref) {
+  var search = ref.watch(seriesSearchedViewModelStateNotifierProvider);
+  var seriesListState = ref.watch(seriesIndexViewModelStateNotifierProvider);
+
+  return seriesListState.when(
+    init: () => const State.init(),
+    success: (seriesList) {
+      switch (search.searchColumn) {
+        case SeriesSearchColumn.none:
+          return State.success(seriesList);
+        case SeriesSearchColumn.title:
+          return State.success(seriesList.searchByTitle(search.value));
+        case SeriesSearchColumn.description:
+          return State.success(seriesList.searchByDescription(search.value));
+      }
+    },
+    loading: () => const State.loading(),
+    error: (exception) => State.error(exception),
+  );
+});
+
+final seriesIndexViewModelStateNotifierProvider =
     StateNotifierProvider.autoDispose<IndexViewModel, State<SeriesList>>((ref) {
   return IndexViewModel(
     ref.read(getAllSeriesUseCaseProvider),
@@ -86,4 +108,6 @@ class IndexViewModel extends StateNotifier<State<SeriesList>> {
       state = State.error(e);
     }
   }
+
+  resetSeries() => _getAllSeries();
 }

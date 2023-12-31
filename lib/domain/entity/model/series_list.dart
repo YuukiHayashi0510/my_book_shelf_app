@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../presentation/pages/series/index/viewmodel/sort_viewmodel.dart';
 import 'series.dart';
 import 'series_id.dart';
 
@@ -31,4 +32,21 @@ class SeriesList with _$SeriesList {
 
   SeriesList searchByTitle(String title) => copyWith(
       values: values.where((series) => series.title.contains(title)).toList());
+
+  SeriesList searchByDescription(String description) => copyWith(
+      values: values
+          .where((series) => series.description.contains(description))
+          .toList());
+
+  SeriesList sortByCreatedAt(Order order) => copyWith(
+      values: values
+        ..sort((a, b) => order == Order.desc
+            ? b.createdAt.compareTo(a.createdAt)
+            : a.createdAt.compareTo(b.createdAt)));
+
+  SeriesList sortByUpdatedAt(Order order) => copyWith(
+      values: values
+        ..sort((a, b) => order == Order.desc
+            ? b.updatedAt.compareTo(a.updatedAt)
+            : a.updatedAt.compareTo(b.updatedAt)));
 }

@@ -2,23 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'series_card.dart';
-import 'viewmodel/index_viewmodel.dart';
+import 'viewmodel/series_index_viewmodel.dart';
 
 class IndexView extends StatelessWidget {
   IndexView({Key? key}) : super(key: key);
 
-  final _searchedSeriesListProvider = searchedSeriesListProvider;
+  final _sortedSeriesListProvider = sortedSeriesListProvider;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('IndexView'),
+        title: const Text('本棚'),
       ),
+      // TODO: シリーズの冊数に応じて本棚のように表示するUI
       body: Column(
         children: [
           Consumer(builder: ((context, ref, _) {
-            return ref.watch(_searchedSeriesListProvider).maybeWhen(
+            return ref.watch(_sortedSeriesListProvider).maybeWhen(
                   success: (seriesList) => Expanded(
                     child: seriesList.length == 0
                         ? const Center(

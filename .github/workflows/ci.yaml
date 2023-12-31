@@ -18,8 +18,10 @@ jobs:
           cache-path: ${{ runner.tool_cache }}/flutter # optional, change this to specify the cache path
       - name: Install packages
         run: flutter pub get
-      - name: Lint
+      - name: Flutter Lint
         run: flutter analyze
+      - name: Riverpod Lint
+        run: dart run custom_lint
 
   format:
     runs-on: ubuntu-latest

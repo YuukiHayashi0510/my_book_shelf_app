@@ -14,7 +14,7 @@ class IndexView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('本棚'),
+        title: const Text('書籍一覧'),
         centerTitle: true,
       ),
       body: Column(
