@@ -1,8 +1,10 @@
 import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../infrastructure/provider.dart';
+import '../../../helpers/permission/camera_permission_helper.dart';
 import '../../../helpers/toast_helper.dart';
 import '../../../viewmodel/book/book_index_viewmodel.dart';
 
@@ -16,6 +18,17 @@ class AddBookFloatingActionButton extends ConsumerWidget {
 
     return FloatingActionButton(
       onPressed: () async {
+        var isCameraAccepted = await CameraPermissionHelper.isAccepted;
+        if (!isCameraAccepted) {
+          var status = await CameraPermissionHelper.request();
+          var isAccepted = status.isGranted || status.isLimited;
+          if (!isAccepted) {
+            // ignore: use_build_context_synchronously
+            InAppNotification.error(context, 'カメラの使用を許可してください');
+            return;
+          }
+        }
+
         var result = await BarcodeScanner.scan();
         var isbn = result.rawContent;
         if (isbn.isEmpty || result.type != ResultType.Barcode) return;
