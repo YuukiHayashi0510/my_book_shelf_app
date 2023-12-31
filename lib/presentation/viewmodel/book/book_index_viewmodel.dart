@@ -1,28 +1,30 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../domain/entity/model/book.dart';
-import '../../../../domain/entity/model/book_id.dart';
-import '../../../../domain/entity/model/book_list.dart';
-import '../../../../domain/provider.dart';
-import '../../../../domain/usecase/book/create_book_usecase.dart';
-import '../../../../domain/usecase/book/delete_book_usecase.dart';
-import '../../../../domain/usecase/book/get_all_books_usecase.dart';
-import '../../../state/state.dart';
-import 'filter_kind_viewmodel.dart';
+import '../../../domain/entity/model/book.dart';
+import '../../../domain/entity/model/book_id.dart';
+import '../../../domain/entity/model/book_list.dart';
+import '../../../domain/provider.dart';
+import '../../../domain/usecase/book/create_book_usecase.dart';
+import '../../../domain/usecase/book/delete_book_usecase.dart';
+import '../../../domain/usecase/book/get_all_books_usecase.dart';
+import '../../state/state.dart';
+import 'book_filter_kind_viewmodel.dart';
+import 'book_search_viewmodel.dart';
 
+// UIではソート済みの方を渡すため、このProviderを使用
 final filteredBookListProvider = Provider.autoDispose<State<BookList>>((ref) {
   var filterKind = ref.watch(filterKindViewModelStateNotifierProvider);
-  var bookListState = ref.watch(indexViewModelStateNotifierProvider);
+  var bookListState = ref.watch(searchedBookListProvider);
 
   return bookListState.when(
     init: () => const State.init(),
     success: (bookList) {
       switch (filterKind) {
-        case FilterKind.all:
+        case BookFilterKind.all:
           return State.success(bookList);
-        case FilterKind.completed:
+        case BookFilterKind.completed:
           return State.success(bookList.filterByCompleted());
-        case FilterKind.incomplete:
+        case BookFilterKind.incomplete:
           return State.success(bookList.filterByIncomplete());
       }
     },
@@ -31,21 +33,41 @@ final filteredBookListProvider = Provider.autoDispose<State<BookList>>((ref) {
   );
 });
 
-final indexViewModelStateNotifierProvider =
-    StateNotifierProvider.autoDispose<IndexViewModel, State<BookList>>((ref) {
-  return IndexViewModel(
+final searchedBookListProvider = Provider.autoDispose<State<BookList>>((ref) {
+  var search = ref.watch(bookSearchedViewModelStateNotifierProvider);
+  var bookListState = ref.watch(bookIndexViewModelStateNotifierProvider);
+
+  return bookListState.when(
+    init: () => const State.init(),
+    success: (bookList) {
+      switch (search.searchColumn) {
+        case BookSearchColumn.none:
+          return State.success(bookList);
+        case BookSearchColumn.title:
+          return State.success(bookList.searchByTitle(search.value));
+      }
+    },
+    loading: () => const State.loading(),
+    error: (exception) => State.error(exception),
+  );
+});
+
+final bookIndexViewModelStateNotifierProvider =
+    StateNotifierProvider.autoDispose<BookIndexViewModel, State<BookList>>(
+        (ref) {
+  return BookIndexViewModel(
     ref.read(getAllBooksUseCaseProvider),
     ref.read(createBookUseCaseProvider),
     ref.read(deleteBookUseCaseProvider),
   );
 });
 
-class IndexViewModel extends StateNotifier<State<BookList>> {
+class BookIndexViewModel extends StateNotifier<State<BookList>> {
   final GetAllBooksUseCase _getAllBooksUseCase;
   final CreateBookUseCase _createBookUseCase;
   final DeleteBookUseCase _deleteBookUseCase;
 
-  IndexViewModel(
+  BookIndexViewModel(
     this._getAllBooksUseCase,
     this._createBookUseCase,
     this._deleteBookUseCase,

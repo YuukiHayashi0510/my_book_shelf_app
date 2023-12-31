@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
-import '../../../domain/entity/model/book.dart';
+import '../../../../domain/entity/model/book.dart';
 
 class BookCard extends ConsumerWidget {
   const BookCard({required this.book, super.key});

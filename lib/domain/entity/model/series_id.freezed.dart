@@ -14,10 +14,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+SeriesId _$SeriesIdFromJson(Map<String, dynamic> json) {
+  return _SeriesId.fromJson(json);
+}
+
 /// @nodoc
 mixin _$SeriesId {
   int get value => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SeriesIdCopyWith<SeriesId> get copyWith =>
       throw _privateConstructorUsedError;
@@ -89,9 +94,12 @@ class __$$SeriesIdImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$SeriesIdImpl implements _SeriesId {
   const _$SeriesIdImpl({required this.value});
+
+  factory _$SeriesIdImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SeriesIdImplFromJson(json);
 
   @override
   final int value;
@@ -109,6 +117,7 @@ class _$SeriesIdImpl implements _SeriesId {
             (identical(other.value, value) || other.value == value));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
@@ -117,10 +126,20 @@ class _$SeriesIdImpl implements _SeriesId {
   @pragma('vm:prefer-inline')
   _$$SeriesIdImplCopyWith<_$SeriesIdImpl> get copyWith =>
       __$$SeriesIdImplCopyWithImpl<_$SeriesIdImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SeriesIdImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _SeriesId implements SeriesId {
   const factory _SeriesId({required final int value}) = _$SeriesIdImpl;
+
+  factory _SeriesId.fromJson(Map<String, dynamic> json) =
+      _$SeriesIdImpl.fromJson;
 
   @override
   int get value;

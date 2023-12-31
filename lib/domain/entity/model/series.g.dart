@@ -7,13 +7,13 @@ part of 'series.dart';
 // **************************************************************************
 
 _$SeriesImpl _$$SeriesImplFromJson(Map<String, dynamic> json) => _$SeriesImpl(
-      id: json['id'] as String,
+      id: SeriesId.fromJson(json['id'] as Map<String, dynamic>),
       title: json['title'] as String,
       description: json['description'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
       books: (json['books'] as List<dynamic>?)
-              ?.map((e) => e as Map<String, dynamic>)
+              ?.map((e) => Book.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );

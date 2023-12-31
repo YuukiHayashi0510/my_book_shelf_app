@@ -20,12 +20,12 @@ Series _$SeriesFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Series {
-  String get id => throw _privateConstructorUsedError;
+  SeriesId get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
-  List<Map<String, dynamic>> get books => throw _privateConstructorUsedError;
+  List<Book> get books => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +38,14 @@ abstract class $SeriesCopyWith<$Res> {
       _$SeriesCopyWithImpl<$Res, Series>;
   @useResult
   $Res call(
-      {String id,
+      {SeriesId id,
       String title,
       String description,
       DateTime createdAt,
       DateTime updatedAt,
-      List<Map<String, dynamic>> books});
+      List<Book> books});
+
+  $SeriesIdCopyWith<$Res> get id;
 }
 
 /// @nodoc
@@ -70,7 +72,7 @@ class _$SeriesCopyWithImpl<$Res, $Val extends Series>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as SeriesId,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -90,8 +92,16 @@ class _$SeriesCopyWithImpl<$Res, $Val extends Series>
       books: null == books
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as List<Book>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SeriesIdCopyWith<$Res> get id {
+    return $SeriesIdCopyWith<$Res>(_value.id, (value) {
+      return _then(_value.copyWith(id: value) as $Val);
+    });
   }
 }
 
@@ -103,12 +113,15 @@ abstract class _$$SeriesImplCopyWith<$Res> implements $SeriesCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
+      {SeriesId id,
       String title,
       String description,
       DateTime createdAt,
       DateTime updatedAt,
-      List<Map<String, dynamic>> books});
+      List<Book> books});
+
+  @override
+  $SeriesIdCopyWith<$Res> get id;
 }
 
 /// @nodoc
@@ -133,7 +146,7 @@ class __$$SeriesImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as SeriesId,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -153,7 +166,7 @@ class __$$SeriesImplCopyWithImpl<$Res>
       books: null == books
           ? _value._books
           : books // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, dynamic>>,
+              as List<Book>,
     ));
   }
 }
@@ -167,14 +180,14 @@ class _$SeriesImpl implements _Series {
       required this.description,
       required this.createdAt,
       required this.updatedAt,
-      final List<Map<String, dynamic>> books = const []})
+      final List<Book> books = const []})
       : _books = books;
 
   factory _$SeriesImpl.fromJson(Map<String, dynamic> json) =>
       _$$SeriesImplFromJson(json);
 
   @override
-  final String id;
+  final SeriesId id;
   @override
   final String title;
   @override
@@ -183,10 +196,10 @@ class _$SeriesImpl implements _Series {
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
-  final List<Map<String, dynamic>> _books;
+  final List<Book> _books;
   @override
   @JsonKey()
-  List<Map<String, dynamic>> get books {
+  List<Book> get books {
     if (_books is EqualUnmodifiableListView) return _books;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_books);
@@ -234,17 +247,17 @@ class _$SeriesImpl implements _Series {
 
 abstract class _Series implements Series {
   const factory _Series(
-      {required final String id,
+      {required final SeriesId id,
       required final String title,
       required final String description,
       required final DateTime createdAt,
       required final DateTime updatedAt,
-      final List<Map<String, dynamic>> books}) = _$SeriesImpl;
+      final List<Book> books}) = _$SeriesImpl;
 
   factory _Series.fromJson(Map<String, dynamic> json) = _$SeriesImpl.fromJson;
 
   @override
-  String get id;
+  SeriesId get id;
   @override
   String get title;
   @override
@@ -254,7 +267,7 @@ abstract class _Series implements Series {
   @override
   DateTime get updatedAt;
   @override
-  List<Map<String, dynamic>> get books;
+  List<Book> get books;
   @override
   @JsonKey(ignore: true)
   _$$SeriesImplCopyWith<_$SeriesImpl> get copyWith =>

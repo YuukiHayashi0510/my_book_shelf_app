@@ -33,4 +33,9 @@ class BookList with _$BookList {
 
   BookList filterByIncomplete() => copyWith(
       values: values.where((book) => book.progress != Progress.done).toList());
+
+  BookList searchByTitle(String title) => copyWith(
+      values: values
+          .where((book) => book.title.toLowerCase().contains(title))
+          .toList());
 }

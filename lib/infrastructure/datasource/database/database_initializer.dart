@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -29,12 +30,10 @@ class DatabaseInitializer {
   }
 
   Future<void> _resetDatabase() async {
-    // ignore: avoid_print
     print('Resetting database...');
     String path = join(await getDatabasesPath(), _databaseName);
     await deleteDatabase(path);
     _database = await _initDatabase();
-    // ignore: avoid_print
     print('Reset database!');
   }
 }

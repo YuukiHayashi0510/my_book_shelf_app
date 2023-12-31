@@ -1,55 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'add_floating_action_button.dart';
-import 'book_card.dart';
-import 'viewmodel/index_viewmodel.dart';
-
-class IndexView extends StatelessWidget {
-  IndexView({super.key});
-
-  final _filteredBookListProvider = filteredBookListProvider;
+// Sample作成、いずれこの画面をMainにし、シリーズ画面と本棚一覧画面をBottomNavigationで切り替え
+class IndexView extends HookWidget {
+  const IndexView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var currentIndex = useState(0);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('本棚'),
-        centerTitle: true,
+        title: const Text('IndexView'),
       ),
-      body: Column(
-        children: [
-          Consumer(
-            builder: ((context, ref, _) {
-              return ref.watch(_filteredBookListProvider).maybeWhen(
-                    success: (bookList) => Expanded(
-                      child: bookList.length == 0
-                          ? const Center(
-                              child: Text('本がありません'),
-                            )
-                          : ListView.builder(
-                              itemCount: bookList.length,
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return BookCard(book: bookList[index]);
-                              },
-                            ),
-                    ),
-                    error: (_) => const Center(
-                      child: Text('エラーが発生しました'),
-                    ),
-                    orElse: () => const Expanded(
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                  );
-            }),
-          )
+      body: const Center(child: Text('IndexView')),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex.value,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
         ],
+        onTap: (index) => currentIndex.value = index,
       ),
-      floatingActionButton: const AddBookFloatingActionButton(),
     );
   }
 }

@@ -14,10 +14,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+BookId _$BookIdFromJson(Map<String, dynamic> json) {
+  return _BookId.fromJson(json);
+}
+
 /// @nodoc
 mixin _$BookId {
   int get value => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BookIdCopyWith<BookId> get copyWith => throw _privateConstructorUsedError;
 }
@@ -87,9 +92,12 @@ class __$$BookIdImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$BookIdImpl implements _BookId {
   const _$BookIdImpl({required this.value});
+
+  factory _$BookIdImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookIdImplFromJson(json);
 
   @override
   final int value;
@@ -107,6 +115,7 @@ class _$BookIdImpl implements _BookId {
             (identical(other.value, value) || other.value == value));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
@@ -115,10 +124,19 @@ class _$BookIdImpl implements _BookId {
   @pragma('vm:prefer-inline')
   _$$BookIdImplCopyWith<_$BookIdImpl> get copyWith =>
       __$$BookIdImplCopyWithImpl<_$BookIdImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookIdImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _BookId implements BookId {
   const factory _BookId({required final int value}) = _$BookIdImpl;
+
+  factory _BookId.fromJson(Map<String, dynamic> json) = _$BookIdImpl.fromJson;
 
   @override
   int get value;

@@ -4,6 +4,7 @@ import '../enum/progress.dart';
 import 'book_id.dart';
 
 part 'book.freezed.dart';
+part 'book.g.dart';
 
 @freezed
 class Book with _$Book {
@@ -23,6 +24,8 @@ class Book with _$Book {
   }) = _Book;
 
   const Book._();
+
+  factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
 
   Book toYet() => copyWith(progress: Progress.yet);
   Book toDoing() => copyWith(progress: Progress.doing);
