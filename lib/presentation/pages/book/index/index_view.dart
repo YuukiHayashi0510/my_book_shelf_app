@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'add_floating_action_button.dart';
 import 'book_card.dart';
-import 'viewmodel/index_viewmodel.dart';
+import '../../../viewmodel/book/book_index_viewmodel.dart';
 
 class IndexView extends StatelessWidget {
   IndexView({super.key});

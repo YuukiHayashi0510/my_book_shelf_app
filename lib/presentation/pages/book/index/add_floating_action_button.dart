@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../infrastructure/provider.dart';
 import '../../../helpers/toast_helper.dart';
-import 'viewmodel/index_viewmodel.dart';
+import '../../../viewmodel/book/book_index_viewmodel.dart';
 
 class AddBookFloatingActionButton extends ConsumerWidget {
   const AddBookFloatingActionButton({super.key});
@@ -12,7 +12,7 @@ class AddBookFloatingActionButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var booksApiRepository = ref.watch(googleBooksApiRepositoryProvider);
-    var viewModel = ref.watch(indexViewModelStateNotifierProvider.notifier);
+    var viewModel = ref.watch(bookIndexViewModelStateNotifierProvider.notifier);
 
     return FloatingActionButton(
       onPressed: () async {

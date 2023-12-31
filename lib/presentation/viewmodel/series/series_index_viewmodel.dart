@@ -1,14 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../domain/entity/model/series_id.dart';
-import '../../../../../domain/entity/model/series_list.dart';
-import '../../../../../domain/provider.dart';
-import '../../../../../domain/usecase/series/create_series_usecase.dart';
-import '../../../../../domain/usecase/series/delete_series_usecase.dart';
-import '../../../../../domain/usecase/series/get_all_series_usecase.dart';
-import '../../../../state/state.dart';
+import '../../../domain/entity/model/series_id.dart';
+import '../../../domain/entity/model/series_list.dart';
+import '../../../domain/provider.dart';
+import '../../../domain/usecase/series/create_series_usecase.dart';
+import '../../../domain/usecase/series/delete_series_usecase.dart';
+import '../../../domain/usecase/series/get_all_series_usecase.dart';
+import '../../state/state.dart';
 import 'series_search_viewmodel.dart';
-import 'sort_viewmodel.dart';
+import 'series_sort_viewmodel.dart';
 
 // UIではソート済みの方を渡す
 final sortedSeriesListProvider = Provider.autoDispose<State<SeriesList>>((ref) {

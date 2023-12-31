@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../presentation/pages/series/index/viewmodel/sort_viewmodel.dart';
+import '../../../presentation/viewmodel/series/series_sort_viewmodel.dart';
 import 'series.dart';
 import 'series_id.dart';
 
