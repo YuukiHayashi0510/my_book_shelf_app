@@ -22,6 +22,12 @@ class AddBookFloatingActionButton extends ConsumerWidget {
 
         try {
           var apiBook = await booksApiRepository.fetchBookByIsbn(isbn);
+          if (apiBook == null) {
+            // TODO: データがない場合は新規作成ページ(Form)へ遷移させるようにする
+            // ignore: use_build_context_synchronously
+            InAppNotification.error(context, '書籍データが見つかりませんでした。');
+            return;
+          }
           var authors = List<String>.from(apiBook['authors']);
 
           await viewModel.addBook(

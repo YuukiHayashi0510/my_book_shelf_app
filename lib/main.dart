@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BookIndexView(),
+      // TODO: 後ほどシリーズと本を統合した画面にする
+      home: const BookIndexView(),
     );
   }
 }
