@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'series_card.dart';
 import '../../../viewmodel/series/series_index_viewmodel.dart';
+import 'series_card.dart';
 
 class IndexView extends StatelessWidget {
   IndexView({Key? key}) : super(key: key);
