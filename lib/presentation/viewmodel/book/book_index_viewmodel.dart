@@ -9,10 +9,12 @@ import '../../../domain/usecase/book/delete_book_usecase.dart';
 import '../../../domain/usecase/book/get_all_books_usecase.dart';
 import '../../state/state.dart';
 import 'book_filter_kind_viewmodel.dart';
+import 'book_search_viewmodel.dart';
 
+// UIではソート済みの方を渡すため、このProviderを使用
 final filteredBookListProvider = Provider.autoDispose<State<BookList>>((ref) {
   var filterKind = ref.watch(filterKindViewModelStateNotifierProvider);
-  var bookListState = ref.watch(bookIndexViewModelStateNotifierProvider);
+  var bookListState = ref.watch(searchedBookListProvider);
 
   return bookListState.when(
     init: () => const State.init(),
@@ -24,6 +26,25 @@ final filteredBookListProvider = Provider.autoDispose<State<BookList>>((ref) {
           return State.success(bookList.filterByCompleted());
         case BookFilterKind.incomplete:
           return State.success(bookList.filterByIncomplete());
+      }
+    },
+    loading: () => const State.loading(),
+    error: (exception) => State.error(exception),
+  );
+});
+
+final searchedBookListProvider = Provider.autoDispose<State<BookList>>((ref) {
+  var search = ref.watch(bookSearchedViewModelStateNotifierProvider);
+  var bookListState = ref.watch(bookIndexViewModelStateNotifierProvider);
+
+  return bookListState.when(
+    init: () => const State.init(),
+    success: (bookList) {
+      switch (search.searchColumn) {
+        case BookSearchColumn.none:
+          return State.success(bookList);
+        case BookSearchColumn.title:
+          return State.success(bookList.searchByTitle(search.value));
       }
     },
     loading: () => const State.loading(),

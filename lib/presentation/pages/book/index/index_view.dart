@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../viewmodel/book/book_index_viewmodel.dart';
+import '../../../viewmodel/book/book_search_viewmodel.dart';
 import 'add_floating_action_button.dart';
 import 'book_card.dart';
+import 'search_box.dart';
 
 class BookIndexView extends ConsumerWidget {
   const BookIndexView({super.key});
@@ -11,13 +13,27 @@ class BookIndexView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var filteredBookList = ref.watch(filteredBookListProvider);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('書籍一覧'),
+        title: const Text(
+          '書籍一覧',
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
+        backgroundColor: const Color(0xFF8b4513),
       ),
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: SearchBox(
+              onChanged: (value) => ref
+                  .read(bookSearchedViewModelStateNotifierProvider.notifier)
+                  .searchByTitle(value),
+            ),
+          ),
+          const SizedBox(height: 16),
           filteredBookList.maybeWhen(
             success: (bookList) => Expanded(
               child: bookList.length == 0
@@ -27,7 +43,6 @@ class BookIndexView extends ConsumerWidget {
                   : ListView.builder(
                       itemCount: bookList.length,
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) =>
                           BookCard(book: bookList[index]),
                     ),
